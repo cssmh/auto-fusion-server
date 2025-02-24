@@ -117,8 +117,7 @@ async function run() {
     // post new bid details
     app.post("/newBid", isToken, async (req, res) => {
       try {
-        const bidDetails = req.body;
-        const productId = bidDetails.productId;
+        const productId = req.body.productId;
         const filter = { _id: new ObjectId(productId) };
         const currentProduct = await productListingsBySellers.findOne(filter);
         const currentBidAmount = currentProduct?.totalBids || 0;
